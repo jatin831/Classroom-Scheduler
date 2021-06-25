@@ -1,0 +1,120 @@
+.Modal {
+    position: absolute;
+    background-color: white;
+    border-radius: 4px;
+    /* box-shadow: 0 -2px 10px black; */
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    z-index: 100;
+    top: 100px;
+    left: 50%;
+    width: 400px;
+    transform: translateX(-50%) translateY(0);
+    padding: 0 15px 15px 15px;
+}
+
+.Modal_Show {
+    animation: modalShow 0.4s ease-out;
+}
+
+@keyframes modalShow {
+    0% {
+        transform: translateX(-50%) translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+.Modal_Close {
+    animation: modalClose 0.3s ease-in;
+}
+
+@keyframes modalClose {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-100%);
+        opacity: 0;
+    }
+}
+
+.Form_Select {
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 5px 8px 5px 8px;
+    font-size: 15px;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.Form_Label {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 20px 0 6px 0;
+}
+
+.Form_Label:first-child {
+    margin-top: 10px;
+}
+
+.Schedule_Form {
+    display: flex;
+    flex-direction: column;
+}
+
+.Form_Head {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.Form_Close_Button {
+    cursor: pointer;
+    padding: 8px;
+    font-size: 28px;
+}
+
+.Form_Close_Button:hover {
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.Modal_Footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+.Modal_Footer button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    font-size: 15px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.Modal_Footer button:hover {
+    filter: brightness(90%);
+}
+
+.Modal_CloseBtn {
+    background-color: red;
+    color: white;
+}
+
+.Modal_SaveBtn {
+    background-color: blue;
+    color: white;
+}

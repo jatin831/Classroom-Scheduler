@@ -1,0 +1,135 @@
+.Sidedrawer {
+    width: 260px;
+    max-width: 100%;
+    height: 100%;
+    background-color: rgb(44,54,68) !important;
+    padding: 10px 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: -260px;
+}
+
+.Sidedrawer_Open {
+    animation: sidedrawer_show 0.3s ease-out forwards;
+}
+
+@keyframes sidedrawer_show {
+    0% {
+        transform: translateX(-100%);
+        margin-right: -260px;
+    }
+    100% {
+        transform: translateX(0);
+        margin-right: 0px;
+    }
+}
+
+.Sidedrawer_Close {
+    animation: sidedrawer_close 0.33s ease-in forwards;
+}
+
+@keyframes sidedrawer_close {
+    0% {
+        transform: translateX(0);
+        margin-right: 0;
+    }
+    100% {
+        transform: translateX(-100%);
+        margin-right: -260px;
+    }
+}
+
+.Sidedrawer_Icons {
+    font-size: 25px;
+    margin-bottom: -1px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.Sidedrawer_Header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Sidedrawer_Calendar {
+    margin-top: 25px;
+    width: 100%;
+}
+
+.Sidedrawer_CalendarCurr {
+    font-size: 15px;
+}
+
+.noselect {
+    user-select: none;
+}
+
+.Sidedrawer_WeekDays {
+    margin: 0 20px;
+    font-size: 12px;
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: bold;
+}
+
+.Sidedrawer_WeekDays div {
+    margin: auto;
+}
+
+.Sidedrawer_Days {
+    margin: 15px 20px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    row-gap: 10px;
+    font-size: 12px;
+}
+
+.Sidedrawer_Days div {
+    margin: auto;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+}
+
+.Sidedrawer_Days div:hover {
+    background-color: black;
+}
+
+.Sidedrawer_Days div.active {
+    background-color: rgb(0,141,221);
+}
+
+.Sidedrawer_AddTeachersIcon {
+    font-size: 24px;
+    margin-bottom: 3px;
+    margin-right: 10px;
+}
+
+.AddTeachersBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: 8px 10px;
+    font-size: 18px;
+    background-color: rgb(44,54,68);
+    border: 1px solid #bab8b8;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 10px;
+    margin-top: 50px;
+}
+
+.AddTeachersBtn:hover {
+    background-color: rgb(40 46 55);
+}

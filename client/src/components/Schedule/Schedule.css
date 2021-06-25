@@ -1,0 +1,270 @@
+.Schedule {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    /* flex-direction: column; */
+}
+
+.Schedule_Table ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.Schedule_Timings ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+}
+
+.Schedule_Timings h5 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.Schedule_Table h2 {
+    font-size: 30px;
+    /* margin-left: 30px; */
+    color: #444444;
+}
+
+.Schedule_Table h3 {
+    margin-top: -5px;
+    margin-left: 7px;
+    font-weight: 600;
+    color: #444444;
+}
+
+.Schedule_Header {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly
+}
+
+.Schedule_Header li {
+    font-size: 20px;
+    color: #444444;
+}
+
+.Schedule_Month {
+    width: 100%;
+}
+
+.Schedule_Table {
+    width: calc(100% - 50px);
+    display: flex;
+}
+
+.Schedule_Field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+}
+
+.Schedule_Day {
+    width: 100%;
+}
+
+.Schedule_Week {
+    width: calc(100%/7);
+}
+
+.Light_Border {
+    border: 1px solid #ccc;
+}
+
+.Light_BorderX {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.Light_BorderY {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.Light_BorderL {
+    border-left: 1px solid #ccc;
+}
+
+.Light_BorderR {
+    border-right: 1px solid #ccc;
+}
+
+.Light_BorderT {
+    border-top: 1px solid #ccc;
+}
+
+.Light_BorderB {
+    border-bottom: 1px solid #ccc;
+}
+
+.Schedule_DayList {
+    height: 91%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.Schedule_Div {
+    /* height: 100%; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 4px 0px 4px 8px;
+    overflow-y: auto;
+}
+
+.Slot_Title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.Slot_Timings {
+    margin-top: 5px;
+    margin-left: 2px;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 12px;
+    /* overflow: hidden; */
+    display: block;
+    white-space: nowrap;
+}
+
+.Slot {
+    flex-grow: 1;
+    background-color: rgb(187 215 242);
+    height: 100%;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin-right: 3px;
+    position: relative;
+    min-width: 150px;
+}
+
+.Slot_Options {
+    display: flex;
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    font-size: 15px;
+    display: none;
+}
+
+.SlotM_Options {
+    display: flex;
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    font-size: 12px;
+    display: none;
+}
+
+.Slot_Update {
+    margin: 0 4px;
+    color: rgb(6, 6, 70);
+    cursor: pointer;
+}
+
+.Slot_Delete {
+    color: #390a0a;
+    cursor: pointer;
+}
+
+.Slot:hover .Slot_Options {
+    display: block;
+}
+
+.Slot_Month:hover .SlotM_Options {
+    display: block;
+}
+
+.Schedule_Cell {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 11px;
+    overflow-x: auto;
+    padding: 3px 7px 2px 3px;
+}
+
+.Schedule_Timing_Cell {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 11px;
+    overflow-x: auto;
+    padding: 3px 3px 2px 3px;
+}
+
+.Schedule_Cell_Week {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    overflow-x: auto;
+    padding: 3px 5px 2px 3px;
+}
+
+.Schedule_Timings {
+    width: 50px;
+}
+
+.Schedule_CalendarDate {
+    display: flex;
+    flex-direction: column;
+}
+
+.Schedule_MonthList {
+    list-style: none;
+}
+
+.Slot_Month {
+    flex-grow: 1;
+    background-color: rgb(187 215 242);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-left: 3px;
+    margin-right: 10px;
+    margin-bottom: 2px;
+}
+
+.SlotM_Teacher {
+    font-size: 13px;
+}
+
+.SlotM_Time {
+    font-size: 12px;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 11px;
+    /* overflow: hidden; */
+    display: block;
+    white-space: nowrap;
+}
+
+@media(max-width: 1500px) {
+    .Slot_Month {
+        padding: 2px 4px;
+        margin-right: 2px;
+    } 
+    .SlotM_Time {
+        font-size: 10px
+    }
+}
+
+.Schedule_Header li {
+    justify-content: center;
+}

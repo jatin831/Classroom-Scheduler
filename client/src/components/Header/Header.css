@@ -1,0 +1,98 @@
+.Header_Container {
+    padding: 10px 25px 14px 25px;
+    background-color: rgb(44,54,68);
+    color: white;
+}
+
+.Header {
+    display: flex;
+    align-items: center;
+}
+
+.Header_Title {
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.Logo_Container {
+    height: 45px;
+    width: 45px;
+    margin-right: 3px;
+}
+
+.Logo_Container img {
+    height: 100%;
+    width: 100%;
+}
+
+.Header_MenuIcon {
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.Button_Dark{
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    font-size: 16px;
+    background-color: rgb(44,54,68);
+    border: 1px solid #bab8b8;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.Button_Dark:hover {
+    background-color: rgb(40 46 55);
+}
+
+.Header_NavDateBtns {
+    margin: 0 10px;
+}
+
+.Header_NavDateIcons {
+    font-size: 35px;
+    cursor: pointer;
+    margin-bottom: -5px;
+}
+
+.Header_SubMenu {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.Header_SelectedDate {
+    font-size: 16px;
+}
+
+.Header_Dropdown {
+    background-color: rgb(65,74,87);
+    padding: 5px 8px;
+    border-radius: 2px;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.Header_Dropdown > option {
+    padding: 10px;
+    cursor: pointer !important;
+}
+
+.Header_SelectTeacher {
+    margin-right: 8px;
+}
+
+.Header_SelectBatch {
+    margin-right: 8px;
+}
+
+.Header_SelectView {
+    margin-right: 10px;
+}
