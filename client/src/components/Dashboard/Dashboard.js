@@ -23,7 +23,7 @@ const Dashboard = () => {
         history.push("/");
     }
 
-    const getTeachers = () => {
+    useEffect(() => {
         axios.get('/api/teachers')
         .then(res => {
             console.log(res);
@@ -32,10 +32,6 @@ const Dashboard = () => {
         .catch(err => {
             console.log(err);
         })
-    }
-
-    useEffect(() => {
-        getTeachers();
 
     }, [])
 
@@ -73,7 +69,6 @@ const Dashboard = () => {
                     changeDate={changeDate} 
                     show={showSidedrawer} 
                     closeSidedrawer={() => {}} 
-                    getTeachers={getTeachers}
                 />
                 <Schedule 
                     currYear={currYear} 

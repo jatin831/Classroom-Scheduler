@@ -3,7 +3,7 @@ import axios from 'axios';
 import './AddTeacherModal.css';
 import Backdrop from '../Backdrop/Backdrop';
 
-const AddTeacherModal = ({show, closeModal, getTeachers}) => {
+const AddTeacherModal = ({show, closeModal}) => {
     const [closing, setClosing] = useState(false);
     const [teacherName, setTeacherName] = useState("");
 
@@ -18,20 +18,18 @@ const AddTeacherModal = ({show, closeModal, getTeachers}) => {
         }
     }, [show])
 
-    const formSubmitHandler = async (event) => {
+    const formSubmitHandler = (event) => {
         event.preventDefault();
-        await axios.post("/api/addTeacher", {
+        axios.post("/api/addTeacher", {
             name: teacherName
         }).then(res => {
             console.log(res);
             if(res.data.status === 404) {
                 alert(res.data.errorMessage);
             } else {
-                getTeachers();
                 console.log(res);
             }
         })
-        setTeacherName("");
         closeModalUtil();
     }
 
