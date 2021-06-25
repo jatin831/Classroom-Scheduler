@@ -262,4 +262,5 @@ if ( process.env.NODE_ENV !== "production") {
     })
 }
 
-app.listen(port, () => console.log(`Listening on port http://localhost:${port}/`));
+export default app;
+// app.listen(port, () => console.log(`Listening on port http://localhost:${port}/`));
