@@ -7,7 +7,7 @@ import { GoPlus } from 'react-icons/go';
 import { shortMonths, getCompleteMonth } from '../utilities';
 import AddTeacherModal from '../AddTeacherModal/AddTeacherModal';
 
-const Sidedrawer = ({show, closeSidedrawer, currYear, currMonth, currDate, changeDate}) => {
+const Sidedrawer = ({show, closeSidedrawer, currYear, currMonth, currDate, changeDate, getTeachers}) => {
     const [selectedYear, setSelectedYear] = useState(currYear);
     const [selectedMonth, setSelectedMonth] = useState(currMonth);
     const [closing, setClosing] = useState(false);
@@ -57,7 +57,7 @@ const Sidedrawer = ({show, closeSidedrawer, currYear, currMonth, currDate, chang
 
     return (
         <>
-            <AddTeacherModal show={showModal} closeModal={() => setShowModal(false)}  />
+            <AddTeacherModal getTeachers={getTeachers} show={showModal} closeModal={() => setShowModal(false)}  />
             <div className={"Sidedrawer " + (closing ? "Sidedrawer_Close" : (show ? "Sidedrawer_Open" : ""))}>
                 <div className="Sidedrawer_Calendar">
                     <div className="Sidedrawer_Header">
