@@ -33,7 +33,7 @@ const AddTeacherModal = ({show, closeModal, getTeachers}) => {
                 getTeachers();
             }
         })
-        closeModalUtil();
+        closeModalUtil(event);
     }
 
     if(!show) return null;
