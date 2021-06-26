@@ -15,8 +15,6 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
     const [teacherId, setTeacherId] = useState(currTeacherId);
     const [batch, setBatch] = useState(currBatch);
 
-    console.log("teacherId: ", teacherId);
-
     const closeModalUtil = () => {
         setClosing(true);
         setTimeout(() => closeModal(), 300);
@@ -27,6 +25,10 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
             setClosing(false);
         }
     }, [show])
+
+    useEffect(() => {
+        setTeacherId(currTeacherId);
+    }, [currTeacherId])
 
     useEffect(() => {
         setStartTime(getTimeStr(currHours, currMinutes));
@@ -50,9 +52,8 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                 startTime: startT,
                 endTime: endT,
                 batch: batch,
-                teacherId: (teacherId !== 0 ? teacherId : 1) 
+                teacherId: (teacherId !== 0 ? teacherId : teachers[0].id) 
             }).then(res => {
-                console.log("Create: ", res);
                 if(res.data.status === 404) {
                     alert(res.data.errorMessage);
                 } else {
@@ -73,10 +74,9 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                 startTime: startT,
                 endTime: endT,
                 batch: batch,
-                teacherId: (teacherId !== 0 ? teacherId : 1),
+                teacherId: (teacherId !== 0 ? teacherId : teachers[0].id),
                 slotId: slotId 
             }).then(res => {
-                console.log("Create: ", res);
                 if(res.data.status === 404) {
                     alert(res.data.errorMessage);
                 } else {
@@ -90,7 +90,6 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
     }
 
     const changeEndTime = (event) => {
-        console.log(event.target.value);
         setEndTime(event.target.value);
     }
 

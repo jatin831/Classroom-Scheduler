@@ -96,21 +96,19 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
             startTime = new Date(currYear + "-" + (currMonth + 1) + "-01").getTime();
             endTime = getDateUtil(currYear, currMonth, getLastDateOfMonth(currYear, currMonth)).getTime();
         }
-        console.log("TeacherId posted: ", teacherId);
         axios.post("/api/slots", {
             teacherId: parseInt(teacherId),
             startTime: startTime,
             endTime, endTime,
             batch: batch
         }).then(res => {
-            console.log(res);
             setScheduleList(res.data);
         })
     }
 
     useEffect(() => {
         getSchedule();
-    }, [teacherId, batch, view, currDate, currMonth, currYear])
+    }, [teacherId, batch, view, currDate, currMonth, currYear, teachers])
 
     let teachersMap = {};
     teachers.forEach(teacher => {
@@ -124,7 +122,6 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
 
     const updateSlot = (event, slotId, startHours, startMinutes, endHours, endMinutes, year, month, date, teachersId) => {
         event.stopPropagation();
-        console.log("Update Slot Clicked", year, month, date);
         setSelectedDate(getDateStr(year, month, date));
         setType("update");
         setSlotId(slotId);
@@ -138,13 +135,11 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
 
     const deleteSlot = (event, slotId) => {
         event.stopPropagation();
-        console.log(slotId);
         axios.delete("/api/deleteSlot", {
             data: {
                 slotId: slotId
             }
         }).then(res => {
-            console.log("delete slot: ", res);
             if(res.data.status === 404) {
                 alert(res.data.errorMessage)
             } else {
@@ -156,7 +151,6 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
     }
 
     const createSlot = (event, hours, year, month, date) => {
-        console.log("Create Slot Clicked");
         setSlotId(null);
         setSelectedTeacherId(teacherId);
         if(hours === -1) {
@@ -213,7 +207,6 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
                                 let slots = [];
                                 scheduleList.forEach(slot => {
                                     let startTime = new Date(slot.start_time);
-                                    // console.log(startTime);
                                     if( startTime.getFullYear() === currYear && 
                                         startTime.getMonth() === currMonth &&
                                         startTime.getDate() === day &&
@@ -283,7 +276,6 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
 
                                             scheduleList.forEach(slot => {
                                                 let startTime = new Date(slot.start_time);
-                                                // console.log(startTime);
                                                 if(startTime.getHours() === time.hours && 
                                                     startTime.getFullYear() === currYear && 
                                                     startTime.getMonth() === currMonth &&
@@ -292,6 +284,7 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
                                                     classes.push(slot); 
                                                 }
                                             })
+                                            
                                             return <li className="Schedule_Cell Light_BorderB" onClick={(event) => createSlot(event, time.hours, currYear, currMonth, currDate)}>
                                                 {
                                                     classes.map(slot => {
@@ -304,7 +297,7 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
                                                         return <div className="Slot">
                                                             <div className="Slot_Options">
                                                                 <IconContext.Provider value={{className: "Slot_Update"}}>
-                                                                    <FiEdit onClick={(event) => updateSlot(event, slot.slotId, startTime.getHours(), startTime.getMinutes(), endTime.getHours(), endTime.getMinutes(), currYear, currMonth, currDate, slot.teacher)}/>
+                                                                    <FiEdit onClick={(event) => updateSlot(event, slot.id, startTime.getHours(), startTime.getMinutes(), endTime.getHours(), endTime.getMinutes(), currYear, currMonth, currDate, slot.teacher_id)}/>
                                                                 </IconContext.Provider>
                                                                 <IconContext.Provider value={{className: "Slot_Delete"}}>
                                                                     <BsTrash onClick={(event) => deleteSlot(event, slot.id)} />
@@ -333,7 +326,6 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
 
                                                     scheduleList.forEach(slot => {
                                                         let startTime = new Date(slot.start_time);
-                                                        // console.log(startTime);
                                                         if(startTime.getHours() === time.hours && 
                                                             startTime.getFullYear() === week.year && 
                                                             startTime.getMonth() === week.month &&
@@ -357,7 +349,7 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
                                                                 return <div className="Slot">
                                                                     <div className="Slot_Options">
                                                                         <IconContext.Provider value={{className: "Slot_Update"}}>
-                                                                            <FiEdit onClick={(event) => updateSlot(event, slot.slotId, startTime.getHours(), startTime.getMinutes(), endTime.getHours(), endTime.getMinutes(), week.year, week.month, week.date)}/>
+                                                                            <FiEdit onClick={(event) => updateSlot(event, slot.id, startTime.getHours(), startTime.getMinutes(), endTime.getHours(), endTime.getMinutes(), week.year, week.month, week.date, slot.teacher_id)}/>
                                                                         </IconContext.Provider>
                                                                         <IconContext.Provider value={{className: "Slot_Delete"}}>
                                                                             <BsTrash onClick={() => deleteSlot(slot.id)} />

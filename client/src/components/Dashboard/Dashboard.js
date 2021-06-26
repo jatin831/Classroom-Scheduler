@@ -23,20 +23,21 @@ const Dashboard = () => {
         history.push("/");
     }
 
-    useEffect(() => {
+    const getTeachers = () => {
         axios.get('/api/teachers')
         .then(res => {
-            console.log(res);
             setTeachers(res.data);
         })
         .catch(err => {
             console.log(err);
         })
+    }
 
+    useEffect(() => {
+        getTeachers();
     }, [])
 
     const changeDate = (year, month, date) => {
-        console.log("change date ", year, month, date);
         setCurrDate(date);
         setCurrMonth(month);
         setCurrYear(year);
@@ -66,6 +67,7 @@ const Dashboard = () => {
                     currYear={currYear} 
                     currMonth={currMonth} 
                     currDate={currDate} 
+                    getTeachers={getTeachers}
                     changeDate={changeDate} 
                     show={showSidedrawer} 
                     closeSidedrawer={() => {}} 
