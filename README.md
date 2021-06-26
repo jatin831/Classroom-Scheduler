@@ -1,3 +1,3 @@
 # Classroom-Scheduler
 
-Deployed on Heroku: https://stormy-bayou-58860.herokuapp.com
+Deployed on Heroku: https://classroom-scheduler-5000.herokuapp.com
