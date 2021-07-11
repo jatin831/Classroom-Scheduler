@@ -107,7 +107,6 @@ app.post('/api/addSlot', (req, res) => {
                         errorMessage: "Invalid Timeslot!. The timeslots must not overlap for the same teacher."
                     })
                 } else {
-                    console.log(params);
                     connection.query('INSERT INTO slots (batch, teacher_id, start_time, end_time) VALUES (?, ?, ?, ?)', [params.batch, params.teacherId, startTime, endTime], (err, results) => {
                         connection.release();
                         if(err) {
@@ -258,7 +257,7 @@ app.delete("/api/deleteTeacher", (req, res) => {
 if ( process.env.NODE_ENV == "production" || 1) { 
     app.use(express.static("client2/build")); 
     const path = require("path"); app.get("*", (req, res) => { 
-        res.sendFile(path.resolve(__dirname, 'client2', 'build', 'index.html')); 
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')); 
     })
 }
 
