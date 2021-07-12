@@ -38,8 +38,7 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
         setTeacherId(currTeacherId)
     }, [currHours, currMinutes, endHours, endMinutes, selectedDate, currTeacherId, currBatch, type])
 
-    const submitFormHandler = (event) => {
-        event.preventDefault();
+    const submitFormHandler = () => {
         if(type === "create") {
             let startT = new Date(date + " " + startTime).getTime();
             let endT = new Date(date + " " + endTime).getTime();
@@ -105,7 +104,7 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                         <GrClose onClick={closeModalUtil} />
                     </IconContext.Provider>
                 </div>
-                <form onSubmit={submitFormHandler} className="Schedule_Form">
+                <div className="Schedule_Form">
                     <label for="title" className="Form_Label">Teacher: </label>
                     <select id="title" value={teacherId} onChange={(event) => setTeacherId(event.target.value)} className="Form_Select" name="teacher">
                         {
@@ -134,9 +133,9 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
 
                     <div className="Modal_Footer">
                         <button onClick={closeModalUtil} className="Modal_CloseBtn">Close</button>
-                        <button type="submit" className="Modal_SaveBtn">{type === "create" ? "Save" : "Update"}</button>
+                        <button type="submit" onClick={submitFormHandler} className="Modal_SaveBtn">{type === "create" ? "Save" : "Update"}</button>
                     </div>
-                </form>
+                </div>
             </div>
         </>
     )
