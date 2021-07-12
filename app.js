@@ -21,7 +21,7 @@ app.use((err, req, res, next) => {
 })
 
 // Invalid Requests
-app.use(() => {
+app.use((req, res) => {
     res.status(404).send({message: "Invalid Request"});
 })
 
