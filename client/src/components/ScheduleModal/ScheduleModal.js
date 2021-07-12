@@ -53,13 +53,9 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                 batch: batch,
                 teacherId: (teacherId !== 0 ? teacherId : teachers[0].id) 
             }).then(res => {
-                if(res.data.status === 404) {
-                    alert(res.data.errorMessage);
-                } else {
-                    getSchedule();
-                }
+                getSchedule();
             }).catch(err => {
-                console.log(err);
+                alert(err.response.data.message);
             })
         } else if(type === "update") {
             let startT = new Date(date + " " + startTime).getTime();
@@ -76,13 +72,9 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                 teacherId: (teacherId !== 0 ? teacherId : teachers[0].id),
                 slotId: slotId 
             }).then(res => {
-                if(res.data.status === 404) {
-                    alert(res.data.errorMessage);
-                } else {
-                    getSchedule();
-                }
+                getSchedule();
             }).catch(err => {
-                console.log(err);
+                alert(err.response.data.message);
             })
         }
         
