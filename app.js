@@ -2,12 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
-const bcrypt = require('bcrypt');
-
-bcrypt.hash("jatinbajaj", 12).then(hp => {
-    console.log(hp);
-})
-
 const app = express();
 
 app.use(express.json());
