@@ -42,6 +42,7 @@ exports.addSlot = (req, res, next) => {
             next(err);
         }
         const params = req.body;
+        console.log(params);
         let startTime = new Date(params.startTime);
         let endTime = new Date(params.endTime);
         connection.query('SELECT * FROM slots WHERE start_time < ? && end_time > ? && teacher_id = ?', [endTime, startTime, params.teacherId], (err, results) => {
