@@ -85,6 +85,7 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                 console.log(err);
             })
         }
+        
         closeModalUtil();
     }
 
