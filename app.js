@@ -20,11 +20,6 @@ app.use((err, req, res, next) => {
     res.status(statusCode).send({message: err.message});
 })
 
-// Invalid Requests
-app.use((req, res) => {
-    res.status(404).send({message: "Invalid Request"});
-})
-
 if ( process.env.NODE_ENV == "production" || 1) { 
     app.use(express.static("client/build")); 
     const path = require("path"); 
