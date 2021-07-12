@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Header.css';
 
@@ -17,11 +17,8 @@ const formWeekInfoString = (weekInfo) => {
 }
 
 const Header = ({toggleSidedrawer, currDate, currYear, currMonth, changeDate, view, setView, setTeacherId, setBatch, teachers}) => {
-    
-    
-    // const [selectedYear, setSelectedYear] = useState(currYear);
-    // const [selectedMonth, setSelectedMonth] = useState(currMonth);
-    // const [selectedDate, setSelectedDate] = useState(currDate);
+
+    const [showLogin, setShowLogin] = useState(false);
 
     const increaseDate = () => {
         let newDate = getDateUtil(currYear, currMonth, currDate);
@@ -128,7 +125,7 @@ const Header = ({toggleSidedrawer, currDate, currYear, currMonth, changeDate, vi
                     </select>
                 </div>
                 <div>
-                    <button className="Header_Login Button_Dark">
+                    <button onClick={() => setShowLogin(true)} className="Header_Login Button_Dark">
                         Login as Admin
                     </button>
                 </div>
