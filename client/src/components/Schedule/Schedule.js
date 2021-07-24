@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import { shortWeeks, getDateUtil, getFirstLastDayOfWeek, getLastDateOfMonth, getCompleteMonth, getDateStr, getTimeAMPM, getFirstDayOfMonth } from '../utilities';
 import ScheduleModal from '../ScheduleModal/ScheduleModal';
 import { BsTrash } from 'react-icons/bs';
 import { FiEdit } from 'react-icons/fi';
 import './Schedule.css';
 import { IconContext } from 'react-icons';
-import axios from 'axios';
+import { selectAuthData } from '../../redux/authSlice';
+import { useSelector } from 'react-redux';
 
 const getWeekInfoList = (currYear, currMonth, currDate) => {
     let weekInfo = getFirstLastDayOfWeek(currYear, currMonth, currDate);
@@ -77,6 +80,8 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
     const [selectedTeacherId, setSelectedTeacherId] = useState(teacherId);
     const [scheduleList, setScheduleList] = useState([]);
 
+    const authData = useSelector(selectAuthData);
+
     useEffect(() => {
         setSelectedTeacherId(teacherId);
     }, [teacherId])
@@ -103,6 +108,9 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
             batch: batch
         }).then(res => {
             setScheduleList(res.data);
+        })
+        .catch(err => {
+            console.log(err);
         })
     }
 
@@ -135,10 +143,17 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
 
     const deleteSlot = (event, slotId) => {
         event.stopPropagation();
+        let headers = {};
+        if (authData.token) {
+            headers = {
+                Authorization: 'Bearer ' + authData.token
+            }
+        }
         axios.delete("/api/deleteSlot", {
             data: {
                 slotId: slotId
-            }
+            },
+            headers: headers
         }).then(res => {
             if(res.data.status === 404) {
                 alert(res.data.errorMessage)
@@ -146,7 +161,9 @@ const Schedule = ({currYear, currMonth, currDate, view, batch, teacherId, teache
                 getSchedule();
             }
         }).catch(err => {
-            console.log(err);
+            if (err.response) {
+                alert(err.response.data.message);
+            }
         })
     }
 

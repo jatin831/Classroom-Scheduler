@@ -1,39 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './AddTeacherModal.css';
 import Backdrop from '../Backdrop/Backdrop';
+import { useDispatch } from 'react-redux';
+import { LOGIN } from '../../redux/authSlice';
 
-const AddTeacherModal = ({show, closeModal, getTeachers}) => {
+const LoginModal = ({show, closeModal}) => {
     const [closing, setClosing] = useState(false);
-    const [teacherName, setTeacherName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const closeModalUtil = (event) => {
-        event.preventDefault();
+    const dispatch = useDispatch();
+
+    const closeModalUtil = () => {
         setClosing(true);
         setTimeout(() => closeModal(), 300);
     }
 
     useEffect(() => {
-        setTeacherName("");
+        setEmail("");
+        setPassword("");
         return () => {
             setClosing(false);
         }
     }, [show])
 
-    const formSubmitHandler = (event) => {
-        event.preventDefault();
-        if(teacherName === "") 
-            return;
-        axios.post("/api/addTeacher", {
-            name: teacherName
-        }).then(res => {
-            if(res.data.status === 404) {
-                alert(res.data.errorMessage);
-            } else {
-                getTeachers();
-            }
-        })
-        closeModalUtil(event);
+    const formSubmitHandler = () => {
+        dispatch(LOGIN(email, password, closeModalUtil));
     }
 
     if(!show) return null;
@@ -42,16 +34,15 @@ const AddTeacherModal = ({show, closeModal, getTeachers}) => {
         <>
             <Backdrop show={show} closeBackdrop={closeModalUtil} />
             <div className={"Modal " + (closing ? "Modal_Close" : "Modal_Show")}>
-                <form>
-                    <input type="text" value={teacherName} onChange={(event) => setTeacherName(event.target.value)} placeholder="Enter Teacher's Name" className="AddTeacherInp" />
-                    <div className="Modal_Footer">
-                        <button onClick={closeModalUtil} className="Modal_CloseBtn">Close</button>
-                        <button onClick={formSubmitHandler} type="submit" className="Modal_SaveBtn">Add</button>
-                    </div>
-                </form>
+                <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Enter Email" className="AddTeacherInp" />
+                <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Enter Password" className="AddTeacherInp" />
+                <div className="Modal_Footer">
+                    <button onClick={closeModalUtil} className="Modal_CloseBtn">Close</button>
+                    <button onClick={formSubmitHandler} type="submit" className="Modal_SaveBtn">Login</button>
+                </div>
             </div>
         </>
     )
 }
 
-export default AddTeacherModal;
+export default LoginModal;

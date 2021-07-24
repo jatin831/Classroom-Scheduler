@@ -9,9 +9,11 @@ app.use(cors())
 
 const slotRoutes = require('./routes/slots');
 const teacherRoutes = require('./routes/teachers');
+const authRoutes = require('./routes/auth');
 
 app.use('/api', slotRoutes);
 app.use('/api', teacherRoutes);
+app.use('/api', authRoutes);
 
 // Error Handling
 app.use((err, req, res, next) => {

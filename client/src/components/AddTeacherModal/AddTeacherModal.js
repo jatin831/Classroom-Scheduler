@@ -2,10 +2,20 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AddTeacherModal.css';
 import Backdrop from '../Backdrop/Backdrop';
+import { selectAuthData } from '../../redux/authSlice';
+import { useSelector } from 'react-redux';
 
 const AddTeacherModal = ({show, closeModal, getTeachers}) => {
     const [closing, setClosing] = useState(false);
     const [teacherName, setTeacherName] = useState("");
+    const authData = useSelector(selectAuthData);
+
+    let headers = {};
+    if (authData.token) {
+        headers = {
+            Authorization: 'Bearer ' + authData.token
+        }
+    }
 
     const closeModalUtil = (event) => {
         event.preventDefault();
@@ -26,11 +36,15 @@ const AddTeacherModal = ({show, closeModal, getTeachers}) => {
             return;
         axios.post("/api/addTeacher", {
             name: teacherName
+        }, 
+        {
+            headers: headers
         }).then(res => {
-            if(res.data.status === 404) {
-                alert(res.data.errorMessage);
-            } else {
-                getTeachers();
+            getTeachers();
+        })
+        .catch(err => {
+            if (err.response) {
+                alert(err.response.data.message);
             }
         })
         closeModalUtil(event);

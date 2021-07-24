@@ -6,6 +6,9 @@ import './ScheduleModal.css';
 import { getTimeStr } from '../utilities';
 import axios from 'axios';
 
+import { useSelector } from 'react-redux';
+import { selectAuthData } from '../../redux/authSlice';
+
 const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHours, currMinutes, endHours, endMinutes, currTeacherId, currBatch, slotId, getSchedule}) => {
     const [closing, setClosing] = useState(false);
     let chosenDate = selectedDate;
@@ -14,6 +17,7 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
     const [endTime, setEndTime] = useState(getTimeStr(endHours, endMinutes));
     const [teacherId, setTeacherId] = useState(currTeacherId);
     const [batch, setBatch] = useState(currBatch);
+    const authData = useSelector(selectAuthData);
 
     const closeModalUtil = () => {
         setClosing(true);
@@ -39,6 +43,13 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
     }, [currHours, currMinutes, endHours, endMinutes, selectedDate, currTeacherId, currBatch, type])
 
     const submitFormHandler = () => {
+        if (teachers.length === 0) return;
+        let headers = {};
+        if (authData.token) {
+            headers = {
+                Authorization: 'Bearer ' + authData.token
+            }
+        }
         if(type === "create") {
             let startT = new Date(date + " " + startTime).getTime();
             let endT = new Date(date + " " + endTime).getTime();
@@ -52,10 +63,14 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                 endTime: endT,
                 batch: batch,
                 teacherId: (teacherId !== 0 ? teacherId : teachers[0].id) 
+            }, {
+                headers: headers
             }).then(res => {
                 getSchedule();
             }).catch(err => {
-                alert(err.response.data.message);
+                if (err.response) {
+                    alert(err.response.data.message);
+                }
             })
         } else if(type === "update") {
             let startT = new Date(date + " " + startTime).getTime();
@@ -70,11 +85,17 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                 endTime: endT,
                 batch: batch,
                 teacherId: (teacherId !== 0 ? teacherId : teachers[0].id),
-                slotId: slotId 
+                slotId: slotId,
+                headers: headers  
+            }, 
+            {
+                headers: headers
             }).then(res => {
                 getSchedule();
             }).catch(err => {
-                alert(err.response.data.message);
+                if (err.response) {
+                    alert(err.response.data.message);
+                }
             })
         }
         

@@ -114,22 +114,35 @@
     margin-right: 10px;
 }
 
-.AddTeachersBtn {
+.Sidedrawer_DeleteTeachersIcon {
+    font-size: 18px;
+    margin-bottom: 3px;
+    margin-right: 10px;
+}
+
+.SidedrawerDarkBtn {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 90%;
     padding: 8px 10px;
-    font-size: 18px;
+    font-size: 16px;
     background-color: rgb(44,54,68);
     border: 1px solid #bab8b8;
     color: white;
     border-radius: 3px;
     cursor: pointer;
     margin: 0 10px;
+}
+
+.SidedrawerDarkBtn:hover {
+    background-color: rgb(40 46 55);
+}
+
+.Sidedrawer_AddTeachers {
     margin-top: 50px;
 }
 
-.AddTeachersBtn:hover {
-    background-color: rgb(40 46 55);
+.Sidedrawer_DeleteTeachers {
+    margin-top: 20px;
 }

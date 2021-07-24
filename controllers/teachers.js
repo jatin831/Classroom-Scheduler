@@ -42,7 +42,8 @@ exports.deleteTeacher = (req, res) => {
             next(err);
         } 
         const params = req.body;
-        connection.query('DELETE FROM teachers WHERE id = ?', [params.teacherId], (err, results) => {
+        console.log(params);
+        connection.query('DELETE FROM teachers WHERE id = ?', [params.id], (err, results) => {
             connection.release();
             if(err) {
                 next(err);

@@ -28,3 +28,33 @@ body {
   background: rgb(92 88 88);
   border-radius: 3px;
 }
+
+.Display_Flex {
+  display: flex !important;
+}
+
+.Display_Flex_Column {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.MT_5 {
+  margin-top: 50px !important;
+}
+
+.MT_4 {
+  margin-top: 40px !important;
+}
+
+.MT_3 {
+  margin-top: 30px !important;
+}
+
+.MT_2 {
+  margin-top: 20px !important;
+}
+
+.MT_1 {
+  margin-top: 10px !important;
+}
+

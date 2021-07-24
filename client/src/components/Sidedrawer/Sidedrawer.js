@@ -4,7 +4,9 @@ import { IconContext } from "react-icons";
 import { BiChevronLeft } from 'react-icons/bi';
 import { BiChevronRight } from 'react-icons/bi';
 import { GoPlus } from 'react-icons/go';
+import { FaTrash } from 'react-icons/fa';
 import { shortMonths, getCompleteMonth } from '../utilities';
+import DeleteTeacherModal from '../DeleteTeacherModal/DeleteTeacherModal';
 import AddTeacherModal from '../AddTeacherModal/AddTeacherModal';
 
 const Sidedrawer = ({show, closeSidedrawer, currYear, currMonth, currDate, changeDate, getTeachers}) => {
@@ -12,6 +14,7 @@ const Sidedrawer = ({show, closeSidedrawer, currYear, currMonth, currDate, chang
     const [selectedMonth, setSelectedMonth] = useState(currMonth);
     const [closing, setClosing] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     
     const closeSidedrawerUtil = () => {
         setClosing(true);
@@ -58,6 +61,11 @@ const Sidedrawer = ({show, closeSidedrawer, currYear, currMonth, currDate, chang
     return (
         <>
             <AddTeacherModal getTeachers={getTeachers} show={showModal} closeModal={() => setShowModal(false)}  />
+            <DeleteTeacherModal 
+                getTeachers={getTeachers} 
+                show={showDeleteModal} 
+                closeModal={() => setShowDeleteModal(false)}  
+            />
             <div className={"Sidedrawer " + (closing ? "Sidedrawer_Close" : (show ? "Sidedrawer_Open" : ""))}>
                 <div className="Sidedrawer_Calendar">
                     <div className="Sidedrawer_Header">
@@ -94,11 +102,19 @@ const Sidedrawer = ({show, closeSidedrawer, currYear, currMonth, currDate, chang
                         </div>
                     </div>
                     <div className="Sidedrawer_AddTeachers">
-                        <button onClick={() => setShowModal(true)} className="AddTeachersBtn">
+                        <button onClick={() => setShowModal(true)} className="SidedrawerDarkBtn">
                             <IconContext.Provider value={{className: "Sidedrawer_AddTeachersIcon"}}>
                                 <GoPlus />
                             </IconContext.Provider>
                             Add Teacher
+                        </button>
+                    </div>
+                    <div className="Sidedrawer_DeleteTeachers">
+                        <button onClick={() => setShowDeleteModal(true)} className="SidedrawerDarkBtn">
+                            <IconContext.Provider value={{className: "Sidedrawer_DeleteTeachersIcon"}}>
+                                <FaTrash />
+                            </IconContext.Provider>
+                            Remove Teacher
                         </button>
                     </div>
                 </div>
