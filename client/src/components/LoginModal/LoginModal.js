@@ -6,8 +6,8 @@ import { LOGIN } from '../../redux/authSlice';
 
 const LoginModal = ({show, closeModal}) => {
     const [closing, setClosing] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("scheduler@gmail.com");
+    const [password, setPassword] = useState("admin_sgsits");
 
     const dispatch = useDispatch();
 
