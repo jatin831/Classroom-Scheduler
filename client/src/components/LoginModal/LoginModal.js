@@ -17,10 +17,6 @@ const LoginModal = ({show, closeModal}) => {
     }
 
     useEffect(() => {
-        // if (!show) {
-        //     setEmail("");
-        //     setPassword("");
-        // }
         return () => {
             setClosing(false);
         }
