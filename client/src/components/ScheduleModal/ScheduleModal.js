@@ -21,7 +21,7 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
 
     const closeModalUtil = () => {
         setClosing(true);
-        setTimeout(() => closeModal(), 300);
+        setTimeout(() => closeModal(), 250);
     }
 
     useEffect(() => {
@@ -62,7 +62,7 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                 startTime: startT,
                 endTime: endT,
                 batch: batch,
-                teacherId: (teacherId !== 0 ? teacherId : teachers[0].id) 
+                teacherId: (parseInt(teacherId) !== 0 ? teacherId : teachers[0].id) 
             }, {
                 headers: headers
             }).then(res => {
@@ -84,7 +84,7 @@ const ScheduleModal = ({teachers, show, closeModal, selectedDate, type, currHour
                 startTime: startT,
                 endTime: endT,
                 batch: batch,
-                teacherId: (teacherId !== 0 ? teacherId : teachers[0].id),
+                teacherId: (parseInt(teacherId) !== 0 ? teacherId : teachers[0].id),
                 slotId: slotId,
                 headers: headers  
             }, 

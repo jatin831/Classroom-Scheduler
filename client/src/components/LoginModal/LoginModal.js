@@ -13,12 +13,14 @@ const LoginModal = ({show, closeModal}) => {
 
     const closeModalUtil = () => {
         setClosing(true);
-        setTimeout(() => closeModal(), 300);
+        setTimeout(() => closeModal(), 250);
     }
 
     useEffect(() => {
-        setEmail("");
-        setPassword("");
+        // if (!show) {
+        //     setEmail("");
+        //     setPassword("");
+        // }
         return () => {
             setClosing(false);
         }
@@ -27,7 +29,7 @@ const LoginModal = ({show, closeModal}) => {
     const formSubmitHandler = () => {
         dispatch(LOGIN(email, password, closeModalUtil));
     }
-
+    console.log(show);
     if(!show) return null;
 
     return (

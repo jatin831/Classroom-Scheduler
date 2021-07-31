@@ -34,7 +34,7 @@ const DeleteTeacherModal = ({show, closeModal, getTeachers}) => {
     const closeModalUtil = (event) => {
         event.preventDefault();
         setClosing(true);
-        setTimeout(() => closeModal(), 300);
+        setTimeout(() => closeModal(), 250);
     }
 
     useEffect(() => {
